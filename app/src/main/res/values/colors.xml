@@ -10,4 +10,6 @@
     <color name="background">#e6102d</color>
     <color name="primarycolor">#FFBD33</color>
     <color name="md_blue_grey_400">#78909C</color>
+    <color name="color2">#e6102d</color>
+    <color name="color1">#FFBD33</color>
 </resources>

@@ -3,9 +3,9 @@ package com.example.e_hotelsapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class FlashScreenActivity : AppCompatActivity() {
+class PinViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_flash_screen)
+        setContentView(R.layout.activity_pin_view)
     }
 }
