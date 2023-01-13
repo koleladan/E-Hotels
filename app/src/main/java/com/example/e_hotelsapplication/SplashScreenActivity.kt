@@ -16,7 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
         val actionBar: androidx.appcompat.app.ActionBar? =supportActionBar
         actionBar?.hide()
         Handler().postDelayed(Runnable {
-            startActivity(Intent(this@SplashScreenActivity, PinViewActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            startActivity(Intent(this@SplashScreenActivity, SignUpActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
         }, 2000)
 
