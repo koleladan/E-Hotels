@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import com.example.e_hotelsapplication.Data.Register
 import com.example.e_hotelsapplication.Data.User
 import com.example.e_hotelsapplication.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -95,7 +96,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun addUserToDatabase(fname: String, lname: String, email: String, pin: String, confirm: String, uid: String?
     ){
         databaseref = FirebaseDatabase.getInstance().getReference()
-        databaseref.child("user").child(uid!!).setValue(User(lname,fname,email,pin,confirm))
+        databaseref.child("user").child(uid!!).setValue(User(fname,lname,email,pin,confirm))
 
     }
 
