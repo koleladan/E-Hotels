@@ -3,28 +3,19 @@ package com.example.e_hotelsapplication.Data
 import android.os.Parcel
 import android.os.Parcelable
 
-data class RestaurantModel( val name:String?, val address:String?, val delivery_charge:String?,
-val image:String?, val hours: Hours?, val register: Register?, val user: User?, val menus: List<Menus?>?) :
+data class RestaurantModel(val restaurant: Restaurant?, val hours: Hours?, val user: User?, val menus: List<Menus?>?) :
     Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
+        parcel.readParcelable(Restaurant::class.java.classLoader),
         parcel.readParcelable(Hours::class.java.classLoader),
-        parcel.readParcelable(Register::class.java.classLoader),
         parcel.readParcelable(User::class.java.classLoader),
         parcel.createTypedArrayList(Menus)
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(address)
-        parcel.writeString(delivery_charge)
-        parcel.writeString(image)
+        parcel.writeParcelable(restaurant, flags)
         parcel.writeParcelable(hours, flags)
-        parcel.writeParcelable(register, flags)
         parcel.writeParcelable(user, flags)
         parcel.writeTypedList(menus)
     }
@@ -43,6 +34,41 @@ val image:String?, val hours: Hours?, val register: Register?, val user: User?, 
         }
     }
 
+}
+data class Restaurant(
+    val name:String?, val address:String?, val password:String?, val delivery_charge:String?,
+    val image: String?
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeString(address)
+        parcel.writeString(password)
+        parcel.writeString(delivery_charge)
+        parcel.writeString(image.toString())
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Restaurant> {
+        override fun createFromParcel(parcel: Parcel): Restaurant {
+            return Restaurant(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Restaurant?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
 
 data class Hours(val Sunday:String?, val Monday:String?, val Tuesday:String?,val Wednesday:String?,
@@ -114,33 +140,7 @@ data class Menus( val name: String?, val price:Float, val url:String?, val total
         }
     }
 }
-data class Register(val customer: String?, val restaurant: String?) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString()
-    ) {
-    }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(customer)
-        parcel.writeString(restaurant)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Register> {
-        override fun createFromParcel(parcel: Parcel): Register {
-            return Register(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Register?> {
-            return arrayOfNulls(size)
-        }
-    }
-
-}
 data class  User(val fname:String?, val lname:String?,val email:String?, val pin:String?,val confirm:String?) :
     Parcelable {
     constructor(parcel: Parcel) : this(
@@ -153,8 +153,8 @@ data class  User(val fname:String?, val lname:String?,val email:String?, val pin
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(lname)
         parcel.writeString(fname)
+        parcel.writeString(lname)
         parcel.writeString(email)
         parcel.writeString(pin)
         parcel.writeString(confirm)
@@ -173,4 +173,5 @@ data class  User(val fname:String?, val lname:String?,val email:String?, val pin
             return arrayOfNulls(size)
         }
     }
+
 }
