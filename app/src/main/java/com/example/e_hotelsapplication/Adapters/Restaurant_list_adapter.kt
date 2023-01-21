@@ -4,19 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.e_hotelsapplication.Data.RestaurantModel
+import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.RestaurantListBinding
 
-class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayList<RestaurantModel>):
+class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayList<RestaurantListData>):
     RecyclerView.Adapter<Restaurant_list_adapter.RestaurantViewHolder>() {
 
 
     inner class RestaurantViewHolder(private val binding:RestaurantListBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(restaurantModel: RestaurantModel) {
+        fun bind(restaurantListData: RestaurantListData) {
             binding.apply{
-                name.text = restaurantModel.restaurant.toString()
-                address.text = restaurantModel.restaurant.toString()
-                hours.text = restaurantModel.hours.toString()
+                name.text = restaurantListData.name
+                address.text = restaurantListData.address
+               // hours.text = restaurantListData.hours.toString()
 
 
             }

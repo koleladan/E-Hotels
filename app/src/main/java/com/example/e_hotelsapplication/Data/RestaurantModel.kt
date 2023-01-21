@@ -3,10 +3,9 @@ package com.example.e_hotelsapplication.Data
 import android.os.Parcel
 import android.os.Parcelable
 
-data class RestaurantModel(val restaurant: Restaurant?, val hours: Hours?, val user: User?, val menus: List<Menus?>?) :
+data class RestaurantModel( val hours: Hours?, val user: User?, val menus: List<Menus?>?) :
     Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readParcelable(Restaurant::class.java.classLoader),
         parcel.readParcelable(Hours::class.java.classLoader),
         parcel.readParcelable(User::class.java.classLoader),
         parcel.createTypedArrayList(Menus)
@@ -14,7 +13,6 @@ data class RestaurantModel(val restaurant: Restaurant?, val hours: Hours?, val u
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeParcelable(restaurant, flags)
         parcel.writeParcelable(hours, flags)
         parcel.writeParcelable(user, flags)
         parcel.writeTypedList(menus)
@@ -35,41 +33,7 @@ data class RestaurantModel(val restaurant: Restaurant?, val hours: Hours?, val u
     }
 
 }
-data class Restaurant(
-    val name:String?, val address:String?, val password:String?, val delivery_charge:String?,
-    val image: String?
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
-    ) {
-    }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(address)
-        parcel.writeString(password)
-        parcel.writeString(delivery_charge)
-        parcel.writeString(image.toString())
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Restaurant> {
-        override fun createFromParcel(parcel: Parcel): Restaurant {
-            return Restaurant(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Restaurant?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
 
 data class Hours(val Sunday:String?, val Monday:String?, val Tuesday:String?,val Wednesday:String?,
 val Thursday:String?, val Friday:String?, val Saturday:String?) : Parcelable {

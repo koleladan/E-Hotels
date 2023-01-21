@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".RestaurentListActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -56,7 +57,7 @@
         android:id="@+id/search"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         android:background="@drawable/custom_input"
-        android:drawableEnd="@drawable/search"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
