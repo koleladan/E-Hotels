@@ -1,7 +1,9 @@
 package com.example.e_hotelsapplication
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +22,7 @@ class RestaurentListActivity : AppCompatActivity() {
         binding = ActivityRestaurentListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val actionbar:ActionBar?=supportActionBar
-        actionbar?.hide()
+        actionbar?.setTitle( "Restaurant List")
 
         restaurantlist = ArrayList()
         adapater = Restaurant_list_adapter(this, restaurantlist)
@@ -46,6 +48,7 @@ class RestaurentListActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@RestaurentListActivity, error.message,Toast.LENGTH_SHORT).show()
+                Log.e(ContentValues.TAG, "error")
 
             }
 
