@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayList<RestaurantListData>):
+class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayList<RestaurantListData>, val clickListener: RestaurantListClickListener):
     RecyclerView.Adapter<Restaurant_list_adapter.RestaurantViewHolder>() {
 
 
@@ -74,10 +74,18 @@ class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayLis
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         holder.bind(restaurantlist[position])
+        //setting itemview onClickListener
+        holder.itemView.setOnClickListener{
+            clickListener.onItemClick(restaurantlist[position])
+        }
     }
 
     override fun getItemCount(): Int {
         return restaurantlist.size
+    }
+//setting the cardviews onclicklistener by having an interface and overriding it in the "RestaurantListActivity
+    interface RestaurantListClickListener{
+        fun onItemClick(restaurantListData: RestaurantListData)
     }
 }
 

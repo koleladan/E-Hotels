@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_hotelsapplication.Adapters.menu_adapter
+import com.example.e_hotelsapplication.Data.Menu
 import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.ActivityCheckoutBinding
 import com.google.firebase.database.DatabaseReference
@@ -14,12 +15,12 @@ class CheckoutActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckoutBinding
     private lateinit var adapter:menu_adapter
     private lateinit var database: DatabaseReference
-    private lateinit var menulist: ArrayList<RestaurantListData>
+    private lateinit var menulist: ArrayList<Menu>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+//using the same key "RestaurantListData" that was passed in the RestaurantListActivity
         val restaurantListData = intent?.getParcelableExtra<RestaurantListData>("RestaurantListData")
 
 

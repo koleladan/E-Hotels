@@ -1,6 +1,7 @@
 package com.example.e_hotelsapplication
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +13,7 @@ import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.ActivityRestaurentListBinding
 import com.google.firebase.database.*
 
-class RestaurentListActivity : AppCompatActivity() {
+class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.RestaurantListClickListener {
     private lateinit var binding: ActivityRestaurentListBinding
     private lateinit var database:DatabaseReference
     private lateinit var adapater:Restaurant_list_adapter
@@ -25,7 +26,7 @@ class RestaurentListActivity : AppCompatActivity() {
         actionbar?.setTitle( "Restaurant List")
 
         restaurantlist = ArrayList()
-        adapater = Restaurant_list_adapter(this, restaurantlist)
+        adapater = Restaurant_list_adapter(this, restaurantlist, this)
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.adapter = adapater
@@ -55,6 +56,12 @@ class RestaurentListActivity : AppCompatActivity() {
         })
 
 
+    }
+//passing the key "RestaurantListData" to CheckoutActivity because its parcelable
+    override fun onItemClick(restaurantListData: RestaurantListData) {
+        val intent = Intent(this@RestaurentListActivity,CheckoutActivity::class.java)
+        intent.putExtra("RestaurantListData", restaurantListData)
+        startActivity(intent)
     }
 
 
