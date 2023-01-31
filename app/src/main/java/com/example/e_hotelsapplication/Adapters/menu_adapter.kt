@@ -40,6 +40,6 @@ class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerV
     }
 
     override fun getItemCount(): Int {
-      return menulist.size
+      return if(menulist==null) return  0 else menulist.size
     }
 }
