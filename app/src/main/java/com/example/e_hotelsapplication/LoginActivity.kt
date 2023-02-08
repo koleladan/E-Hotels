@@ -31,33 +31,44 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         val email = binding.edtemail.text.toString().trim()
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             binding.edtemail.error = "Enter email"
         }
         val pin = binding.edtpin.text.toString().trim()
-        if (pin.isEmpty()){
+        if (pin.isEmpty()) {
             binding.edtpin.error = "Enter password"
-        }
-        val progressDialog = ProgressDialog(this@LoginActivity)
-        progressDialog.setMessage("loading...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
+        } else {
+            val progressDialog = ProgressDialog(this@LoginActivity)
+            progressDialog.setMessage("loading...")
+            progressDialog.setCancelable(false)
+            progressDialog.show()
 
 
-        auth.signInWithEmailAndPassword(email,pin)
-            .addOnCompleteListener(this) { task->
-                if (task.isSuccessful){
-                    progressDialog.dismiss()
-                    startActivity(Intent(this@LoginActivity,RestaurentListActivity::class.java))
-                    Toast.makeText(applicationContext, "Login Success.", Toast.LENGTH_SHORT).show()
-                    finish()
+            auth.signInWithEmailAndPassword(email, pin)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        progressDialog.dismiss()
+                        startActivity(
+                            Intent(
+                                this@LoginActivity,
+                                RestaurentListActivity::class.java
+                            )
+                        )
+                        Toast.makeText(applicationContext, "Login Success.", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
 
-                }else{
-                    progressDialog.dismiss()
-                    Toast.makeText(applicationContext,"User does not exist", Toast.LENGTH_SHORT).show()
-                    Log.e(ContentValues.TAG, "signupWithCustomToken:failure", task.exception)
+                    } else {
+                        progressDialog.dismiss()
+                        Toast.makeText(
+                            applicationContext,
+                            "User does not exist",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.e(ContentValues.TAG, "signupWithCustomToken:failure", task.exception)
+                    }
                 }
-            }
 
+        }
     }
 }
