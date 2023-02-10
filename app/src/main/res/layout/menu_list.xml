@@ -66,6 +66,7 @@
              />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addbtn"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="94dp"

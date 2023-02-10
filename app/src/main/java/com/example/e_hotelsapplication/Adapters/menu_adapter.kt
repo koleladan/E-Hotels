@@ -8,24 +8,34 @@ import com.bumptech.glide.Glide
 import com.example.e_hotelsapplication.Data.Menu
 import com.example.e_hotelsapplication.databinding.MenuListBinding
 
-class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
+class menu_adapter(val context: Context, val menulist:ArrayList<Menu>, val clickListener:MenuListClickListener):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
 
 
 
     inner  class MenuViewHolder(private val  binding: MenuListBinding):RecyclerView.ViewHolder(binding.root) {
         val foodimage = binding.fimage
+        val fname = binding.foodname
+        val  fprice = binding.price
+        val addbutton = binding.addbtn
 
-        fun bind(bind:Menu){
+        fun bind(menu:Menu){
             binding.apply {
-                foodname.text = bind.foodname
-                price.text = "Price:" +bind.price
+                addbutton.setOnClickListener{
+                    //menu.totalInCart = 1
+                    clickListener.addToCartClickListener(menu)
+                   // addMoreLayout
+
+                }
+                fname.text = menu.foodname
+                fprice.text = "Price: $ ${menu.price}"
 
 
                 Glide.with(foodimage)
-                    .load(bind.fimage)
+                    .load(menu.fimage)
                     .into(foodimage)
             }
         }
+
 
     }
 
@@ -40,6 +50,9 @@ class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerV
     }
 
     override fun getItemCount(): Int {
-      return if(menulist==null) return  0 else menulist.size
+      return  menulist.size
+    }
+    interface MenuListClickListener{
+        fun addToCartClickListener(menu: Menu)
     }
 }

@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class RestaurantListData() : Parcelable {
+     var menu:Menu? = null
     var name:String? = null
     var address:String? =null
     var image:String?= null
@@ -16,12 +17,14 @@ class RestaurantListData() : Parcelable {
     }
 
     constructor(
+        menu: Menu?,
         name:String?,
         address:String?,
         image:String?,
         hours: Hours?,
 
     ) : this() {
+        this.menu = menu
         this.name = name
         this.address = address
         this.image = image

@@ -2,6 +2,7 @@ package com.example.e_hotelsapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,7 +31,7 @@ class CheckoutActivity : AppCompatActivity() {
         actionBar?.setSubtitle(restaurantListData?.address)
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        menulist = ArrayList()
+        menulist= ArrayList()
         adapter= menu_adapter(this, menulist)
         binding.recyclerview.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerview.setHasFixedSize(true)
@@ -57,7 +58,7 @@ class CheckoutActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+                Log.e("menu", "onFailure:${error.message}")
 
             }
 
