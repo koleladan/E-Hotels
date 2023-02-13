@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "279729435078",
-    "project_id": "e-hotel-application",
-    "storage_bucket": "e-hotel-application.appspot.com"
+    "project_number": "421410091972",
+    "project_id": "e-restaurants",
+    "storage_bucket": "e-restaurants.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279729435078:android:0b689b26b4c66983b382c7",
+        "mobilesdk_app_id": "1:421410091972:android:2697eb2c5911920ed02a91",
         "android_client_info": {
           "package_name": "com.example.e_hotelsapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279729435078-etj745f3ths6hcl1nmq8poqfc1g59jih.apps.googleusercontent.com",
+          "client_id": "421410091972-77hpa14ndff4h018eme93fudsh81hja3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA0Xsi660PipsmSAcjbNhXKk9pJgePomww"
+          "current_key": "AIzaSyC3zSKEzmwWp_Y87uN0G1epbFzzU2V6QK4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "279729435078-etj745f3ths6hcl1nmq8poqfc1g59jih.apps.googleusercontent.com",
+              "client_id": "421410091972-77hpa14ndff4h018eme93fudsh81hja3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

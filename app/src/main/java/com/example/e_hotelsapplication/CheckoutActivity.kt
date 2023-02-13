@@ -46,7 +46,7 @@ class CheckoutActivity : AppCompatActivity() {
 
     private fun getMenuData() {
         database = FirebaseDatabase.getInstance().getReference("Restaurants")
-        database.addValueEventListener(object :ValueEventListener{
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     for (menuListSnapshot in snapshot.children){

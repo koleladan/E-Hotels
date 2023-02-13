@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.e_hotelsapplication.Data.Menu
 import com.example.e_hotelsapplication.databinding.MenuListBinding
 
-class menu_adapter(val context: Context, val menulist:ArrayList<Menu>, val clickListener:MenuListClickListener):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
+class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
 
 
 
@@ -22,7 +22,7 @@ class menu_adapter(val context: Context, val menulist:ArrayList<Menu>, val click
             binding.apply {
                 addbutton.setOnClickListener{
                     //menu.totalInCart = 1
-                    clickListener.addToCartClickListener(menu)
+                    //clickListener.addToCartClickListener(menu)
                    // addMoreLayout
 
                 }
@@ -52,7 +52,7 @@ class menu_adapter(val context: Context, val menulist:ArrayList<Menu>, val click
     override fun getItemCount(): Int {
       return  menulist.size
     }
-    interface MenuListClickListener{
-        fun addToCartClickListener(menu: Menu)
-    }
+//    interface MenuListClickListener{
+//        fun addToCartClickListener(menu: Menu)
+//    }
 }
