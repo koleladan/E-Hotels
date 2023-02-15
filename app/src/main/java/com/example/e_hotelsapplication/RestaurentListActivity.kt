@@ -31,6 +31,12 @@ class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.Rest
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.adapter = adapater
 
+        binding.imageView.setOnClickListener{
+            val intent = Intent(this@RestaurentListActivity, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+        }
+
         getRestaurantData()
     }
 

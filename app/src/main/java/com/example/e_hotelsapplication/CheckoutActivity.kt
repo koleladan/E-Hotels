@@ -1,12 +1,11 @@
 package com.example.e_hotelsapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_hotelsapplication.Adapters.menu_adapter
 import com.example.e_hotelsapplication.Data.Menu
 import com.example.e_hotelsapplication.Data.RestaurantListData
@@ -36,6 +35,11 @@ class CheckoutActivity : AppCompatActivity() {
         binding.recyclerview.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerview.setHasFixedSize(true)
         binding.recyclerview.adapter = adapter
+
+        binding.imageView.setOnClickListener{
+            val intent = Intent(this@CheckoutActivity, RestaurentListActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
 
 
         binding.checkoutbtn.setOnClickListener {
