@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_hotelsapplication.Adapters.Restaurant_list_adapter
 import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.ActivityRestaurentListBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
 
 class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.RestaurantListClickListener {
@@ -35,6 +37,32 @@ class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.Rest
             val intent = Intent(this@RestaurentListActivity, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
 
+        }
+
+        binding.navimage.setOnClickListener{
+            binding.drawerlayout.openDrawer(GravityCompat.START)
+        }
+        binding.nav.setNavigationItemSelectedListener { item ->
+            Log.i(ContentValues.TAG, "onNavigationItemSelected:" + item.itemId)
+            when (item.itemId) {
+                R.id.about -> {
+                    Toast.makeText(applicationContext, "clicked", Toast.LENGTH_SHORT).show()
+
+                }
+                R.id.settings -> {
+
+                }
+                R.id.share -> {
+
+                }
+                R.id.contact -> {
+
+                }
+
+            }
+            binding.drawerlayout.closeDrawer(GravityCompat.START)
+            Log.i(ContentValues.TAG, "onNavigationItemSelected:nothing clicked")
+            false
         }
 
         getRestaurantData()
