@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.e_hotelsapplication.Data.Menu
+import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.MenuListBinding
 
 class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
@@ -18,7 +19,7 @@ class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerV
         val  fprice = binding.price
         val addbutton = binding.addbtn
 
-        fun bind(menu:Menu){
+        fun bind(menu: Menu){
             binding.apply {
                 addbutton.setOnClickListener{
                     //menu.totalInCart = 1

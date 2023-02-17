@@ -22,7 +22,7 @@ class CheckoutActivity : AppCompatActivity() {
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //using the same key "RestaurantListData" that was passed in the RestaurantListActivity
-        val restaurantListData = intent?.getParcelableExtra<RestaurantListData>("RestaurantListData")
+        val restaurantListData = intent.getParcelableExtra<RestaurantListData>("RestaurantListData")
 
 
         val actionBar:ActionBar? = supportActionBar
@@ -43,6 +43,9 @@ class CheckoutActivity : AppCompatActivity() {
 
 
         binding.checkoutbtn.setOnClickListener {
+            val intent = Intent(this@CheckoutActivity, PlaceorderActivity::class.java)
+            intent.putExtra("RestaurantListData", restaurantListData)
+            startActivity(intent)
 
         }
         getMenuData()

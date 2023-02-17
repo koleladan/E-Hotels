@@ -57,6 +57,7 @@
                     android:layout_marginEnd="134dp"
                     android:text="Customer Details"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -67,11 +68,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="134dp"
                     android:text="Pickup"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/switchdelivery"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/info" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchdelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginEnd="6dp"
+                    app:layout_constraintEnd_toStartOf="@+id/delivery"
+                    app:layout_constraintStart_toEndOf="@+id/pickup"
                     app:layout_constraintTop_toBottomOf="@+id/info" />
 
                 <TextView
@@ -83,6 +94,7 @@
                     android:layout_marginEnd="134dp"
                     android:text="Delivery"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/info" />
@@ -92,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="20dp"
                     android:hint="Enter your name"
                     android:padding="8dp"
@@ -120,7 +132,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:hint="Enter your city"
-
                     android:padding="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -159,6 +170,7 @@
                     android:layout_marginEnd="155dp"
                     android:text="Card Details"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/zip" />
@@ -208,6 +220,7 @@
                     android:layout_marginEnd="155dp"
                     android:text="Total items in cart"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pin" />
@@ -222,6 +235,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
+                tools:listitem="@layout/order_list"
                 app:layout_constraintTop_toBottomOf="@+id/details" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -257,6 +271,7 @@
                     <TableRow>
 
                         <TextView
+                            android:id="@+id/deliverycharge"
                             android:padding="3dip"
                             android:text="Delivery Charge" />
 
