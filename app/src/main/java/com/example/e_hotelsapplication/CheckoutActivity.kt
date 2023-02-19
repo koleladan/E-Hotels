@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.e_hotelsapplication.Adapters.menu_adapter
@@ -31,10 +32,8 @@ class CheckoutActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         menulist= ArrayList()
-        adapter= menu_adapter(this, menulist)
         binding.recyclerview.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerview.setHasFixedSize(true)
-        binding.recyclerview.adapter = adapter
 
         binding.imageView.setOnClickListener{
             val intent = Intent(this@CheckoutActivity, RestaurentListActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -60,7 +59,10 @@ class CheckoutActivity : AppCompatActivity() {
                         val menu =menuListSnapshot.getValue(Menu::class.java)
                         menulist.add(menu!!)
                     }
+                    adapter= menu_adapter(this, menulist)
                     binding.recyclerview.adapter = adapter
+                    Log.d("menulist",menulist.size.toString())
+                    Toast.makeText(applicationContext, menulist.size.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
 

@@ -1,34 +1,15 @@
 package com.example.e_hotelsapplication.Data
 
-class Hours{
-    var Monday:String?= null
-    var Tuesday:String? = null
-    var Wednesday:String? = null
-    var Thursday:String?= null
-    var Friday:String?=null
-    var Saturday:String?= null
-    var Sunday:String?= null
-    constructor(){}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-    constructor(
-        Monday:String?,
-        Tuesday:String?,
-        Wednesday:String?,
-        Thursday:String?,
-        Friday:String?,
-        Saturday:String?,
-        Sunday:String?
-
-    ){
-        this.Sunday = Sunday
-        this.Friday =Friday
-        this.Monday =Monday
-        this.Saturday =Saturday
-        this.Tuesday =Tuesday
-        this.Wednesday = Wednesday
-        this.Thursday = Thursday
-    }
-
-
-
-}
+@Parcelize
+data class Hours(
+    val Monday:String?= null,
+    val Tuesday:String? = null,
+    val Wednesday:String? = null,
+    val Thursday:String?= null,
+    val Friday:String?=null,
+    val Saturday:String?= null,
+    val Sunday:String?= null
+):Parcelable

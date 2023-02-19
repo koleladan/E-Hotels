@@ -1,15 +1,14 @@
 package com.example.e_hotelsapplication.Adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.e_hotelsapplication.Data.Menu
-import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.MenuListBinding
+import com.google.firebase.database.ValueEventListener
 
-class menu_adapter(val context: Context, val menulist:ArrayList<Menu>):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
+class menu_adapter(val context: ValueEventListener, val menulist:ArrayList<Menu>):RecyclerView.Adapter<menu_adapter.MenuViewHolder>() {
 
 
 
