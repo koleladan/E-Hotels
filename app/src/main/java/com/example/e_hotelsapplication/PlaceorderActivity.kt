@@ -33,12 +33,14 @@ class PlaceorderActivity : AppCompatActivity() {
                 binding.state.visibility = View.VISIBLE
                 binding.zip.visibility = View.VISIBLE
                 binding.deliverycharge.visibility = View.VISIBLE
+                binding.delprice.visibility = View.VISIBLE
             }else{
                 binding.address.visibility = View.GONE
                 binding.city.visibility = View.GONE
                 binding.zip.visibility = View.GONE
                 binding.state.visibility= View.GONE
                 binding.deliverycharge.visibility = View.GONE
+                binding.delprice.visibility = View.GONE
             }
 
         }

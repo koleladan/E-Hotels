@@ -276,6 +276,7 @@
                             android:text="Delivery Charge" />
 
                         <TextView
+                            android:id="@+id/delprice"
                             android:gravity="right"
                             android:padding="3dip"
                             android:text="$10.00" />

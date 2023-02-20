@@ -31,7 +31,9 @@ class CheckoutActivity : AppCompatActivity() {
         actionBar?.setSubtitle(restaurantListData?.address)
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        menulist= ArrayList()
+//        adapter = menu_adapter(this,menulist)
+//        binding.recyclerview.adapter =adapter
+        menulist= ArrayList<Menu>()
         binding.recyclerview.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerview.setHasFixedSize(true)
 
@@ -49,6 +51,34 @@ class CheckoutActivity : AppCompatActivity() {
         }
         getMenuData()
     }
+//    private fun getMenuData() {
+//        val menu = getRestaurantData().mapNotNull { it.menu }
+//        adapter.menulist.addAll(menu.toList())
+//    }
+//
+//    private fun getRestaurantData(): ArrayList<RestaurantListData> {
+//        val restaurants = ArrayList<RestaurantListData>()
+//        database = FirebaseDatabase.getInstance().getReference( "Restaurants")
+//        database.addValueEventListener(object: ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if (snapshot.exists()){
+//                    for (restaurantListSnapshot in snapshot.children){
+//                        val restaurant = restaurantListSnapshot.getValue(RestaurantListData::class.java)
+//                        restaurants.add(restaurant!!)
+//                        Log.d("menulist", menulist.toString())
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//
+//            }
+//
+//        })
+//
+//        return restaurants
+//    }
+//}
 
     private fun getMenuData() {
         database = FirebaseDatabase.getInstance().getReference("Restaurants")
@@ -59,10 +89,9 @@ class CheckoutActivity : AppCompatActivity() {
                         val menu =menuListSnapshot.getValue(Menu::class.java)
                         menulist.add(menu!!)
                     }
-                    adapter= menu_adapter(this, menulist)
+                    adapter= menu_adapter(this@CheckoutActivity,menulist)
                     binding.recyclerview.adapter = adapter
-                    Log.d("menulist",menulist.size.toString())
-                    Toast.makeText(applicationContext, menulist.size.toString(), Toast.LENGTH_SHORT).show()
+
                 }
             }
 
