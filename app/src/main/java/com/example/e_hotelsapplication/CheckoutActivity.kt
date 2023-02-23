@@ -9,9 +9,12 @@ import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.e_hotelsapplication.Adapters.menu_adapter
 import com.example.e_hotelsapplication.Data.Menu
+import com.example.e_hotelsapplication.Data.Restaurant
 import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.ActivityCheckoutBinding
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
+import kotlinx.coroutines.NonCancellable.key
 
 class CheckoutActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckoutBinding
@@ -23,12 +26,12 @@ class CheckoutActivity : AppCompatActivity() {
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //using the same key "RestaurantListData" that was passed in the RestaurantListActivity
-        val restaurantListData = intent.getParcelableExtra<RestaurantListData>("RestaurantListData")
+        val restaurant = intent.getParcelableExtra<Restaurant>("RestaurantListData")
 
 
         val actionBar:ActionBar? = supportActionBar
-        actionBar?.setTitle(restaurantListData?.name)
-        actionBar?.setSubtitle(restaurantListData?.address)
+        actionBar?.setTitle(restaurant?.name)
+        actionBar?.setSubtitle(restaurant?.address)
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
 //        adapter = menu_adapter(this,menulist)
@@ -45,7 +48,7 @@ class CheckoutActivity : AppCompatActivity() {
 
         binding.checkoutbtn.setOnClickListener {
             val intent = Intent(this@CheckoutActivity, PlaceorderActivity::class.java)
-            intent.putExtra("RestaurantListData", restaurantListData)
+            intent.putExtra("RestaurantListData", restaurant)
             startActivity(intent)
 
         }
@@ -84,23 +87,32 @@ class CheckoutActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("Restaurants")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    for (menuListSnapshot in snapshot.children){
-                        val menu =menuListSnapshot.getValue(Menu::class.java)
+                if (snapshot.exists()) {
+                    snapshot.children.forEach { Log.d("snapshot", it.toString()) }
+                    for (menulistSnapshot in snapshot.children) {
+                        val menu = menulistSnapshot.getValue(Menu::class.java)
                         menulist.add(menu!!)
+
+
                     }
-                    adapter= menu_adapter(this@CheckoutActivity,menulist)
+                    adapter = menu_adapter(this@CheckoutActivity, menulist)
                     binding.recyclerview.adapter = adapter
+                    Log.d("menu", menulist.toString())
 
                 }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("menu", "onFailure:${error.message}")
-
+                Log.e("menu", "onCancelled:${error.message}")
             }
-
         })
 
+
+
+
     }
+
 }
+

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.e_hotelsapplication.Data.Restaurant
 import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.ActivityPlaceorderBinding
 
@@ -15,7 +16,7 @@ class PlaceorderActivity : AppCompatActivity() {
         binding = ActivityPlaceorderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val restaurantListData = intent.getParcelableExtra<RestaurantListData>("RestaurantListData")
+        val restaurantListData = intent.getParcelableExtra<Restaurant>("RestaurantListData")
 
         val  actionBar:ActionBar? = supportActionBar
         actionBar?.setTitle(restaurantListData?.name)

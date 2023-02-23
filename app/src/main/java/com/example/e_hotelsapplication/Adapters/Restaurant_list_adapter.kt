@@ -1,29 +1,25 @@
 package com.example.e_hotelsapplication.Adapters
 
 import android.content.Context
-import android.icu.util.Calendar
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.e_hotelsapplication.Data.Hours
+import com.example.e_hotelsapplication.Data.Restaurant
 import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.RestaurantListBinding
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
-class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayList<RestaurantListData>, val clickListener: RestaurantListClickListener):
+class Restaurant_list_adapter(var context: Context, var restaurantlist: ArrayList<Restaurant>, val clickListener: RestaurantListClickListener):
     RecyclerView.Adapter<Restaurant_list_adapter.RestaurantViewHolder>() {
 
 
     inner class RestaurantViewHolder(private val binding:RestaurantListBinding):RecyclerView.ViewHolder(binding.root) {
         private val thumbImage = binding.image
         @RequiresApi(Build.VERSION_CODES.N)
-        fun bind(restaurantListData: RestaurantListData) {
+        fun bind(restaurantListData: Restaurant) {
             binding.apply{
                 name.text = restaurantListData.name
                 address.text = "Address:" +restaurantListData.address
@@ -85,7 +81,7 @@ class Restaurant_list_adapter (var context: Context, var restaurantlist:ArrayLis
     }
 //setting the cardviews onclicklistener by having an interface and overriding it in the "RestaurantListActivity
     interface RestaurantListClickListener{
-        fun onItemClick(restaurantListData: RestaurantListData)
+        fun onItemClick(restaurantListData: Restaurant)
     }
 }
 

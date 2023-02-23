@@ -10,16 +10,18 @@ import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_hotelsapplication.Adapters.Restaurant_list_adapter
+import com.example.e_hotelsapplication.Data.Menu
+import com.example.e_hotelsapplication.Data.Restaurant
 import com.example.e_hotelsapplication.Data.RestaurantListData
 import com.example.e_hotelsapplication.databinding.ActivityRestaurentListBinding
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.RestaurantListClickListener {
     private lateinit var binding: ActivityRestaurentListBinding
     private lateinit var database:DatabaseReference
     private lateinit var adapater:Restaurant_list_adapter
-    private lateinit var restaurantlist:ArrayList<RestaurantListData>
+    private lateinit var restaurantlist:ArrayList<Restaurant>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRestaurentListBinding.inflate(layoutInflater)
@@ -73,13 +75,18 @@ class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.Rest
         database.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
+                    snapshot.children.forEach { Log.d("snapshot", it.toString()) }
+
+                    }
                     for (restaurantListSnapshot in snapshot.children){
-                        val restaurant = restaurantListSnapshot.getValue(RestaurantListData::class.java)
+                        val restaurant = restaurantListSnapshot.getValue(Restaurant::class.java)
                         restaurantlist.add(restaurant!!)
                     }
                     binding.recyclerview.adapter =adapater
                 }
-            }
+
+
+
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@RestaurentListActivity, error.message,Toast.LENGTH_SHORT).show()
@@ -92,9 +99,9 @@ class RestaurentListActivity : AppCompatActivity(), Restaurant_list_adapter.Rest
 
     }
 //passing the key "RestaurantListData" to CheckoutActivity because its parcelable
-    override fun onItemClick(restaurantListData: RestaurantListData) {
+    override fun onItemClick(restaurantlist: Restaurant) {
         val intent = Intent(this@RestaurentListActivity,CheckoutActivity::class.java)
-        intent.putExtra("RestaurantListData", restaurantListData)
+        intent.putExtra("RestaurantListData", restaurantlist)
         startActivity(intent)
     }
 
