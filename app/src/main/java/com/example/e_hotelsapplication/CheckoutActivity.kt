@@ -84,19 +84,25 @@ class CheckoutActivity : AppCompatActivity() {
 //}
 
     private fun getMenuData() {
-        database = FirebaseDatabase.getInstance().getReference("Restaurants")
+        database = FirebaseDatabase.getInstance().getReference("Restaurants").child("001").child("menu")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    snapshot.children.forEach { Log.d("snapshot", it.toString()) }
-                    for (menulistSnapshot in snapshot.children) {
-                        val menu = menulistSnapshot.getValue(Menu::class.java)
-                        menulist.add(menu!!)
+                    val menulist = mutableListOf<Menu>()
+                    snapshot.children.forEach { it.getValue<Menu?>()
+                        ?.let { it1 -> menulist.add(it1) } }
+                    Log.d("menulist", menulist.toString())
 
-
-                    }
-                    adapter = menu_adapter(this@CheckoutActivity, menulist)
-                    binding.recyclerview.adapter = adapter
+                    //snapshot.children.forEach { Log.d("snapshot", it.toString()) }
+//                    for (menulistSnapshot in snapshot.children) {
+//
+//
+//
+//
+//
+//                    }
+                    adapter = menu_adapter(this@CheckoutActivity, menulist as ArrayList<Menu>)
+                   binding.recyclerview.adapter = adapter
                     Log.d("menu", menulist.toString())
 
                 }
